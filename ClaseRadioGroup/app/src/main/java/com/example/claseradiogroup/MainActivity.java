@@ -3,7 +3,8 @@ package com.example.claseradiogroup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.RadioButton;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -29,6 +30,20 @@ public class MainActivity extends AppCompatActivity {
                     textView.setText("Tu equipo favorito es Albacete Balompié");
                 } else if (i == R.id.radioButtonBetis) {
                     textView.setText("Tu equipo favorito es el Real Betis Balonpié");
+                }
+
+            };
+        });
+
+        CheckBox checkBox = (CheckBox) findViewById(R.id.checkbox2);
+        TextView textView2 = (TextView) findViewById(R.id.textView2);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    textView2.setText("Me gusta el fútbol!!!!!");
+                } else {
+                    textView2.setText("");
                 }
             }
         });
