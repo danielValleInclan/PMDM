@@ -1,0 +1,76 @@
+# Directorios generados por Android Studio
+/.idea
+/.gradle
+/build
+/captures
+
+# Archivos de configuración
+local.properties
+
+# Archivos de compilación de Gradle
+*.iml
+.gradle
+/build/
+/captures/
+/local.properties
+/.externalNativeBuild
+
+# Archivos de respaldo de Android Studio
+*.orig
+
+# Archivos generados por ProGuard
+proguard-rules.pro
+
+# Archivos de dependencias de Android
+app/libs/
+
+# Archivos de construcción de Android Studio (recomendado excluirlos)
+*.apk
+*.ap_
+*.class
+*.dex
+*.arj
+*.lzh
+*.lha
+*.taz
+*.gz
+*.tgz
+*.bz2
+*.bz
+*.tbz
+*.tbz2
+*.tz
+*.deb
+*.rpm
+*.jar
+*.war
+*.ear
+*.sar
+*.rar
+*.alz
+*.ace
+*.zoo
+*.cpio
+*.7z
+*.rz
+*.cab
+*.wim
+*.swm
+*.dwm
+*.esd
+*.iso
+*.vfd
+*.fdd
+*.ima
+*.img
+*.dsk
+*.sdi
+*.flp
+*.bdi
+*.bin
+*.cue
+*.mds
+*.z
+
+# Archivos de construcción de Visual Studio Code
+.vscode/
