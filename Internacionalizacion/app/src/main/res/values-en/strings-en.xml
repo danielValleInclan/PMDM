@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Internacionalization</string>
+    <string name="saludo">Welcome to the registration form</string>
+    <string name="nombre">Name</string>
+    <string name="apellidos">Last name</string>
+    <string name="email">Email</string>
+    <string name="clave">Key</string>
+</resources>
