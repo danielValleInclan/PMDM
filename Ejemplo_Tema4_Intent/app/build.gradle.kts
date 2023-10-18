@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.intent_3"
+    namespace = "com.example.ejemplo_tema4_intent"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.intent_3"
+        applicationId = "com.example.ejemplo_tema4_intent"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -19,10 +19,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
