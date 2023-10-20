@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Ahorcado</string>
+    <string-array name="palabrasOcultas">
+        <item>Hola</item>
+        <item>Adios</item>
+        <item>Buenas</item>
+    </string-array>
+</resources>

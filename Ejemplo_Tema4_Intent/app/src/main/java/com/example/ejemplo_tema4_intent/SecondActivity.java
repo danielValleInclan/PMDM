@@ -27,10 +27,18 @@ public class SecondActivity extends AppCompatActivity {
         editText.setText(texto);
         Intent intent = new Intent(SecondActivity.this, MainActivity.class);
         Button button_aceptar = (Button) findViewById(R.id.button_aceptar);
+        Button button_cancelar = (Button) findViewById(R.id.button_cancelar);
         button_aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 intent.putExtra("valor", editText.getText().toString());
+                startActivity(intent);
+            }
+        });
+        button_cancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent);
             }
         });
     }
