@@ -6,63 +6,93 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="406dp"
-        android:layout_height="177dp"
-        android:orientation="horizontal"
+    <ImageButton
+        android:id="@+id/buttonPapel"
+        android:layout_width="109dp"
+        android:layout_height="187dp"
+        android:layout_weight="1"
+        android:contentDescription="imagen Papel"
+        android:src="@drawable/paper_pc"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintEnd_toStartOf="@+id/buttonPiedra"
+        app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.692">
+        app:layout_constraintVertical_bias="0.651" />
 
-        <ImageButton
-            android:id="@+id/buttonTijera"
-            android:layout_width="191dp"
-            android:layout_height="174dp"
-            android:layout_weight="1"
-            android:contentDescription="imagenTijera"
-            android:src="@drawable/scissors_pc" />
+    <ImageButton
+        android:id="@+id/buttonPiedra"
+        android:layout_width="143dp"
+        android:layout_height="186dp"
+        android:layout_weight="1"
+        android:contentDescription="imagen Piedra"
+        android:src="@drawable/rock_pc"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonPlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.648" />
 
-        <ImageButton
-            android:id="@+id/buttonPiedra"
-            android:layout_width="118dp"
-            android:layout_height="175dp"
-            android:layout_weight="1"
-            android:contentDescription="imagen Piedra"
-            android:src="@drawable/rock_pc" />
-
-        <ImageButton
-            android:id="@+id/buttonPapel"
-            android:layout_width="108dp"
-            android:layout_height="175dp"
-            android:layout_weight="1"
-            android:contentDescription="imagen Papel"
-            android:src="@drawable/paper_pc" />
-
-    </RadioGroup>
+    <ImageButton
+        android:id="@+id/buttonTijera"
+        android:layout_width="124dp"
+        android:layout_height="147dp"
+        android:layout_weight="1"
+        android:contentDescription="imagenTijera"
+        android:src="@drawable/scissors_pc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toEndOf="@+id/buttonPiedra"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.633" />
 
     <Button
         android:id="@+id/buttonPlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="Jugar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.992" />
 
     <ImageView
         android:id="@+id/imagen"
         android:layout_width="149dp"
         android:layout_height="148dp"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPiedra"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:srcCompat="@android:drawable/ic_menu_help" />
+
+    <TextView
+        android:id="@+id/resultado"
+        android:layout_width="237dp"
+        android:layout_height="55dp"
+        android:text="Resultado"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPiedra"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagen" />
+
+    <TextView
+        android:id="@+id/seleccion"
+        android:layout_width="237dp"
+        android:layout_height="57dp"
+        android:text="selección"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPiedra"
+        app:layout_constraintVertical_bias="0.505" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
