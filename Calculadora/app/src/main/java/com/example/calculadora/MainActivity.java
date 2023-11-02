@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -76,7 +77,34 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case "=":
-
+                if (input.length() != 0 && operator != null){
+                    num2 = Double.parseDouble(input.toString());
+                    double result = 0;
+                    switch (operator){
+                        case "+":
+                            result = num1 + num2;
+                            break;
+                        case "-":
+                            result = num1 - num2;
+                            break;
+                        case "*":
+                            result = num1 * num2;
+                            break;
+                        case "/":
+                            if (num2 != 0){
+                                result = num1 / num2;
+                            } else {
+                                textView.setText("No se puede dividir entre 0");
+                            }
+                            break;
+                    }
+                    // Mostrar el resultado en el TextView
+                    textView.setText(String.valueOf(result));
+                    // Restablecer las variables para la próxima operación
+                    num1 = result;
+                    input.setLength(0);
+                    operator = null;
+                }
                 break;
             default:
                 input.append(data);
