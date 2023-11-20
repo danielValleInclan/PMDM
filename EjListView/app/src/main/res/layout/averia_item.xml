@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_camera_24" />
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Título Avería"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/ivFoto"
+        app:layout_constraintTop_toTopOf="@+id/ivFoto" />
+
+    <TextView
+        android:id="@+id/tvModeloCoche"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modelo Coche"
+        app:layout_constraintStart_toStartOf="@+id/tvTitulo"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />
+
+    <ImageView
+        android:id="@+id/ivPresupuesto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivFoto"
+        app:layout_constraintStart_toStartOf="@+id/tvModeloCoche"
+        app:layout_constraintTop_toBottomOf="@+id/tvModeloCoche"
+        app:srcCompat="@drawable/baseline_price_check_24" />
+
+    <TextView
+        android:id="@+id/tvPresupuesto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="0 Presupuesto"
+        app:layout_constraintBottom_toBottomOf="@+id/ivPresupuesto"
+        app:layout_constraintStart_toEndOf="@+id/ivPresupuesto"
+        app:layout_constraintTop_toTopOf="@+id/ivPresupuesto" />
+</androidx.constraintlayout.widget.ConstraintLayout>
