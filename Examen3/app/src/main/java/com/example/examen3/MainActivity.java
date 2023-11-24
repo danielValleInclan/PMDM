@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         productos.add(new Producto("RATÓN", 20));
         productos.add(new Producto("ALFOMBRILLA", 10));
         productos.add(new Producto("MICRÓFONO", 14));
+        productos.add(new Producto("USB", 70));
 
 
         MiAdaptador miAdaptador = new MiAdaptador(
@@ -44,8 +45,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-        Toast.makeText(this, "Has pulsado el elemento" + position, Toast.LENGTH_SHORT).show();
         Producto productoSeleccionado = productos.get(position);
+        Toast.makeText(this, "Entrando a descripción de " + productoSeleccionado.getTitulo(), Toast.LENGTH_SHORT).show();
 
         if (esTableta()) {
             // Si es una tableta, muestra el detalle en un fragmento
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         } else {
             // Si es un móvil, inicia una nueva actividad de detalle
             Intent intent = new Intent(this, DetalleProductoActivity.class);
-            intent.putExtra("producto", productoSeleccionado);
+            intent.putExtra("producto", productoSeleccionado.getTitulo());
             startActivity(intent);
         }
     }
