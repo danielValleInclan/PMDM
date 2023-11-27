@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ public class DescFragment extends Fragment {
     public static DescFragment newInstance(Producto producto) {
         DescFragment fragment = new DescFragment();
         Bundle args = new Bundle();
-        args.putSerializable("producto", producto);
+        args.putSerializable("clave", producto);
         fragment.setArguments(args);
         return fragment;
     }
@@ -29,12 +30,17 @@ public class DescFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_desc, container, false);
 
-        // Obtener el producto de los argumentos
-        Producto producto = (Producto) getArguments().getSerializable("producto");
-
-        // Actualizar la interfaz de usuario con la información del producto
-        TextView textViewDetalle = view.findViewById(R.id.textViewDetalle);
-        textViewDetalle.setText(obtenerTextoDetalle(producto.getTitulo()));
+        // Verificar si el Bundle no es null
+        if (getArguments() != null) {
+            // Acceder al objeto Producto desde el Bundle
+            Producto productoSeleccionado = (Producto) getArguments().getSerializable("clave");
+            // Actualizar la interfaz de usuario con la información del producto
+            TextView textViewDetalle = view.findViewById(R.id.textViewDetalle);
+            textViewDetalle.setText(obtenerTextoDetalle(productoSeleccionado.getTitulo()));
+        } else {
+            // Manejar el caso en el que el Bundle es null
+            Log.e("DescFragment", "El Bundle es null");
+        }
 
         return view;
     }
