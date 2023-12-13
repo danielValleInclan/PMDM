@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         videoView = findViewById(R.id.videoView);
 
         // Establecer la ruta del video
-        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.ExamenPMDM3; // Reemplaza "tu_video" con el nombre de tu archivo de video
+        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.examenpmdm3; // Reemplaza "tu_video" con el nombre de tu archivo de video
 
         // Configurar el controlador de medios
         MediaController mediaController = new MediaController(this);
