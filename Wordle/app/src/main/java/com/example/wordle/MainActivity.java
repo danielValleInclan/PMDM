@@ -7,6 +7,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -17,8 +19,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private int contFila = 0, contCol = 1;
-    private EditText et1, et2, et3, et4, et5, et6, et7, et8, et9, et10, et11, et12, et13, et14, et15, et16, et17, et18, et19, et20, et21, et22, et23, et24, et25;
-
+    private EditText[] editTextArray = new EditText[25];
     String palabra = "", adivinarPalabra = "AMIGO";
     ImageView[][] imageViews = new ImageView[5][5];
 
@@ -28,33 +29,73 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button bComenzar = findViewById(R.id.bComenzar);
-        et1 = findViewById(R.id.et1);
-        et2 = findViewById(R.id.et2);
-        et3 = findViewById(R.id.et3);
-        et4 = findViewById(R.id.et4);
-        et5 = findViewById(R.id.et5);
-        et6 = findViewById(R.id.et6);
-        et7 = findViewById(R.id.et7);
-        et8 = findViewById(R.id.et8);
-        et9 = findViewById(R.id.et9);
-        et10 = findViewById(R.id.et10);
-        et11 = findViewById(R.id.et11);
-        et12 = findViewById(R.id.et12);
-        et13 = findViewById(R.id.et13);
-        et14 = findViewById(R.id.et14);
-        et15 = findViewById(R.id.et15);
-        et16 = findViewById(R.id.et16);
-        et17 = findViewById(R.id.et17);
-        et18 = findViewById(R.id.et18);
-        et19 = findViewById(R.id.et19);
-        et20 = findViewById(R.id.et20);
-        et21 = findViewById(R.id.et21);
-        et22 = findViewById(R.id.et22);
-        et23 = findViewById(R.id.et23);
-        et24 = findViewById(R.id.et24);
-        et25 = findViewById(R.id.et25);
+        for (int i = 1; i <= 25; i++) {
+            int editTextId = getResources().getIdentifier("et" + i, "id", getPackageName());
+            editTextArray[i - 1] = findViewById(editTextId);
+
+            final int nextIndex = i % 25;
+            final EditText currentEditText = editTextArray[i - 1];
+
+            // Agregar TextWatcher a cada EditText
+            currentEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
+                    // No se necesita implementación aquí
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                    // Verificar si se ha ingresado un carácter
+                    if (count > 0) {
+                        // Mover el foco al siguiente editText
+                        editTextArray[nextIndex].requestFocus();
+
+                        // Verificar si estamos al final de la fila (cada fila tiene 5 EditText)
+                        if (nextIndex % 5 == 0) {
+                            // Realizar acciones adicionales aquí, como verificar la palabra formada
+                            // y realizar otras tareas después de completar una fila
+                            String palabraFormada = getWordFromRow(nextIndex);
+                            // Realizar acciones adicionales con la palabra formada
+                            if (comprobarPalabra(palabraFormada)){
+                               Toast.makeText(MainActivity.this, "Has ganadooo", Toast.LENGTH_SHORT).show();
+                               // colorear los edittext de la linea de verde
+                            }else {
+                                
+                            }
+
+                            // Limpieza o reinicio si es necesario
+                            // ...
+                        }
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    // No se necesita implementación aquí
+                }
+            });
+        }
+    }
+    private boolean comprobarPalabra(String palabra){
+        if (palabra.equals(adivinarPalabra)){
+            return true;
+        }
+        return false;
+    }
+
+    // Método para obtener la palabra formada en una fila
+    private String getWordFromRow(int currentIndex) {
+        StringBuilder wordBuilder = new StringBuilder();
+        int start = currentIndex - 4; // Obtener el índice inicial de la fila
+        for (int i = start; i <= currentIndex; i++) {
+            wordBuilder.append(editTextArray[i % 25].getText().toString());
+        }
+        return wordBuilder.toString();
+    }
+}
 
 
+/*
         bComenzar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,132 +135,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void comprobarPalabra(String palabra){
-        if (palabra.equals(adivinarPalabra)){
-            Toast.makeText(this, "Has ganadoooo", Toast.LENGTH_SHORT);
-        }
-    }
 
-    private void openKeyboard(){
-        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (inputMethodManager != null){
-            inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-        }
-    }
-
-
-
-    // Verifica el código de tecla presionado
-                        /*
-                        switch (keyCode) {
-                            case KeyEvent.KEYCODE_A:
-                                // Acciones cuando se presiona la tecla 'A'
-                                palabra.concat("A");
-                            case KeyEvent.KEYCODE_B:
-                                palabra.concat("B");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.baseline_check_24));
-                            case KeyEvent.KEYCODE_C:
-                                palabra.concat("C");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_D:
-                                palabra.concat("D");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_E:
-                                palabra.concat("E");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_F:
-                                palabra.concat("F");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_G:
-                                palabra.concat("G");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_H:
-                                palabra.concat("H");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_I:
-                                palabra.concat("I");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_J:
-                                palabra.concat("J");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_K:
-                                palabra.concat("K");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_L:
-                                palabra.concat("L");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_M:
-                                palabra.concat("M");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_N:
-                                palabra.concat("N");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_O:
-                                palabra.concat("O");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_P:
-                                palabra.concat("P");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_Q:
-                                palabra.concat("Q");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_R:
-                                palabra.concat("R");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_S:
-                                palabra.concat("S");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_T:
-                                palabra.concat("T");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_U:
-                                palabra.concat("U");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_V:
-                                palabra.concat("V");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_W:
-                                palabra.concat("W");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_X:
-                                palabra.concat("X");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_Y:
-                                palabra.concat("Y");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_Z:
-                                palabra.concat("Z");
-                                auxIv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_check_24));
-
-                            case KeyEvent.KEYCODE_INSERT:
-                                if (finCol){
-                                    comprobarPalabra(palabra);
-                                }
-                            default:
-                        }
-                         */
-
-}
+ */
